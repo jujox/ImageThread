@@ -29,14 +29,17 @@ function MainController($scope, $http) {
     $scope.imageFile = "";
     $scope.title = "";
 
-    $http({
-        method  : 'GET',
-        url     : 'http://localhost/ImageThread/index.php/list',
-    })
-    .success(function(data) {
-        $scope.listImages = data;
-        $scope.posts = data.length;
-    });
+
+    $scope.getImages = function () {
+        $http({
+            method  : 'GET',
+            url     : 'http://localhost/ImageThread/index.php/list',
+        })
+        .success(function(data) {
+            $scope.listImages = data;
+            $scope.posts = data.length;
+        });
+    }
 
     $scope.upload = function () {
         var formData = new FormData();
@@ -52,8 +55,11 @@ function MainController($scope, $http) {
         })
         .success(function(data) {
             console.log("Uploaded...");
+            $scope.getImages();
         });
 
         console.log("Uploading...");
     }
+
+    $scope.getImages();
 }

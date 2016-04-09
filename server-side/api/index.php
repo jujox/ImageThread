@@ -6,6 +6,7 @@ require_once __DIR__.'/controller.php';
 require_once __DIR__.'/config.php';
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -21,6 +22,11 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
                 'charset' => 'utf8mb4',
             ),
         ));
+
+$app->error(function (\Exception $e, $code) {
+    error_log("ERROR: " . $e);
+    return new Response('{"status": "ERR", "data" : "' . $code . '"}');
+});
 
 $controller = new MainController();
 
