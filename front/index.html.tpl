@@ -2,19 +2,20 @@
         <div class="starter-template">
             <br/> <br/>
             <div class="row">
-                    Posts: {{posts}} <button type="button" class="btn btn-primary btn-lg">Export</button> Views: {{views}}
+                    Posts: {{posts}} <button type="button" class="btn btn-primary btn-lg" ng-click="export()">Export</button> Views: {{views}}
+                    <br/> <br/>
             </div>
-            <br/> <br/>
             <div class="row">
                 <form class="form-inline">
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="title" id="title"  name="title" placeholder="Image title" >
-                    <input type="file" file-model="imageFile">
+                    <input type="file" class="form-control" file-model="imageFile">
                     <button ng-click="upload()" class="btn btn-primary btn-lg">Upload image</button>
                 </div>
                 </form>
+                {{image_status}}
             </div>
-            <br/> <br/>
+            <br/><br/>
             <div ng-repeat="image in listImages">
                 <div class="row">
                     <p>{{image.title}}</p>
