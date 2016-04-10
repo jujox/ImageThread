@@ -78,7 +78,19 @@ class MainController {
         }
     }
 
+    public function Reset($app) {
+        $sql = "delete from views";
+        $sql2 = "delete from images";
+        try {
+            $app['db']->executeUpdate($sql);
+            $app['db']->executeUpdate($sql2);
+        } catch (Exception $e) {
+            throw new Exception("Error on DB access");
+        }
+       return  '{"status": "OK"; "data": "App reset"}';
+    }
+
+
 }
 
 ?>
-

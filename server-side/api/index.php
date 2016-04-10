@@ -71,6 +71,11 @@ $app->get('/export', function () use ($controller, $app){
     return $controller->Export($app);
 });
 
+$app->get('/reset', function () use ($controller, $app){
+    return $controller->Reset($app);
+});
+
+
 
 // Here we go
 $app->run();
